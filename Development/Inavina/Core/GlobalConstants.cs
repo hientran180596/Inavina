@@ -9,6 +9,7 @@ namespace Inavina.Core
     public class GlobalConstants
     {
         #region Default Values
+        public static readonly log4net.ILog log = log4net.LogManager.GetLogger("ScanBarcode");
         public static string keySoft = "KSOFT";
         public static string saltSoft = "O12ab88cKh@nh";
         public static kLicense license;
@@ -25,7 +26,7 @@ namespace Inavina.Core
         public static List<Shift> shift = new List<Shift>();
         public static List<LanguageLibrary> languageLibrary = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
-        public static bool debugMode = false;
+        public static bool debugMode = true;
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }
         public enum ProductionStatusValue { None, InProgress, Completed, Hold }

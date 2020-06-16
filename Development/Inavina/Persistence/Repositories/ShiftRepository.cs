@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using Inavina.Core;
 using Inavina.Core.Helper;
+using DevExpress.XtraEditors.Controls;
 
 namespace Inavina.Persistence.Repositories
 {
@@ -70,7 +71,7 @@ namespace Inavina.Persistence.Repositories
             try
             {
                 DateTime dateTime = DateTime.Parse(DateTime.Now.ToString("2020-01-01 HH:mm:ss"));
-                var shift = GlobalConstants.shift.Where(_ => _.FromTime >= dateTime && dateTime <= _.ToTime).OrderBy(_ => _.FromTime).FirstOrDefault();
+                var shift = GlobalConstants.shift.Where(_ => _.FromTime <= dateTime && dateTime <= _.ToTime).OrderBy(_ => _.FromTime).FirstOrDefault();
                 result = (shift != null ? shift.ShiftNo : "0001");
             }
             catch { }
