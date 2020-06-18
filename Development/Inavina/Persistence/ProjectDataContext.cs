@@ -1,7 +1,8 @@
-using Inavina.Core.Domain;
+﻿using Inavina.Core.Domain;
 using System.Data.Entity;
 using System.Data.Common;
 using System;
+using Inavina.Core;
 
 namespace Inavina.Persistence
 {
@@ -29,7 +30,7 @@ namespace Inavina.Persistence
             }
             catch (Exception ex)
             {
-               Core.Helper.Logger.ErrorLog(ex.Message);
+                GlobalConstants.log.Error("Loi ket noi database. " + ex.ToString());
             }
         }
         #endregion
@@ -52,6 +53,20 @@ namespace Inavina.Persistence
                 return new ProjectDataContext(context.Database.Connection, transaction);
             }
             return new ProjectDataContext();
+        }
+
+        public virtual bool CheckConnection(ProjectDataContext context)
+        {
+            try
+            {
+                context.Database.Connection.Open();
+                context.Database.Connection.Close();
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
         }
         #endregion
 

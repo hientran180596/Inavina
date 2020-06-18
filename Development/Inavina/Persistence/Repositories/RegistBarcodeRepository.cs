@@ -30,6 +30,7 @@ namespace Inavina.Persistence.Repositories
             {
                 registBarcode.Id = GetAutoID();
                 registBarcode.UserID = GlobalConstants.userID;
+                registBarcode.Status = GlobalConstants.StatusValue.Using;
                 registBarcode.CreatedAt = DateTime.Now;
                 registBarcode.CreatedBy = GlobalConstants.username;
                 Add(registBarcode);
@@ -111,14 +112,14 @@ namespace Inavina.Persistence.Repositories
             {
                 View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
                 _report.DataSource = listBarcode;
-                //if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
-                //{
-                //    _report.PrinterName = GlobalConstants.printerName;
-                //    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
-                //    rpt.AutoShowParametersPanel = false;
-                //    rpt.Print();
-                //}
-                //else
+                if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))
+                {
+                    _report.PrinterName = GlobalConstants.printerName;
+                    DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
+                    rpt.AutoShowParametersPanel = false;
+                    rpt.Print();
+                }
+                else
                 {
                     DevExpress.XtraReports.UI.ReportPrintTool rpt = new DevExpress.XtraReports.UI.ReportPrintTool(_report);
                     rpt.AutoShowParametersPanel = false;
@@ -153,26 +154,26 @@ namespace Inavina.Persistence.Repositories
                         };
 
             var scanBarcodesNG = from x in ProjectDataContext.ScanBarcodes
-                               where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
-                                   (x.ResultStatus == GlobalConstants.ResultStatusValue.NotFound || x.ResultStatus == GlobalConstants.ResultStatusValue.NG)
-                               group x by new
-                               {
-                                   x.ScanDate.Year,
-                                   x.ScanDate.Month,
-                                   x.ScanDate.Day
-                               } into g
+                                 where x.ScanDate >= fromDate && x.ScanDate <= toDate &&
+                                     (x.ResultStatus == GlobalConstants.ResultStatusValue.NotFound || x.ResultStatus == GlobalConstants.ResultStatusValue.NG)
+                                 group x by new
+                                 {
+                                     x.ScanDate.Year,
+                                     x.ScanDate.Month,
+                                     x.ScanDate.Day
+                                 } into g
 
-                               select new
-                               {
-                                   Year = g.Key.Year,
-                                   Month = g.Key.Month,
-                                   Day = g.Key.Day,
-                                   PartNo = "Mã vạch bị NOT FOUND + NG",
-                                   QuantityPrint = 0,
-                                   QuantityScan = g.Count(),
-                                   QuantityOK = 0,
-                                   QuantityNG = g.Count()
-                               };
+                                 select new
+                                 {
+                                     Year = g.Key.Year,
+                                     Month = g.Key.Month,
+                                     Day = g.Key.Day,
+                                     PartNo = "Mã vạch bị NOT FOUND + NG",
+                                     QuantityPrint = 0,
+                                     QuantityScan = g.Count(),
+                                     QuantityOK = 0,
+                                     QuantityNG = g.Count()
+                                 };
 
             List<ReportSyntheticRegistBarcode> reportSyntheticViews = new List<ReportSyntheticRegistBarcode>();
             ReportSyntheticRegistBarcode reportSyntheticView;

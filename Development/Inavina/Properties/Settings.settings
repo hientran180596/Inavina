@@ -39,7 +39,10 @@
       <Value Profile="(Default)">VN001208</Value>
     </Setting>
     <Setting Name="MustUseBarcodeReader" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="CountTimeReset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>
