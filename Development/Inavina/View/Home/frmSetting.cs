@@ -56,7 +56,7 @@ namespace Inavina.View.Home
             cbbPrinter.Items.Clear();
             try
             {
-                cbbPrinter.Items.Add("");
+               cbbPrinter.Items.Add("");
                 foreach (string installedPrinters in PrinterSettings.InstalledPrinters)
                 {
                     cbbPrinter.Items.Add(installedPrinters);
@@ -67,7 +67,7 @@ namespace Inavina.View.Home
 
         public void LoadPortCOM()
         {
-            cbbPrinter.Items.Clear();
+            cbbPortCOM.Items.Clear();
             try
             {
                 cbbPortCOM.Items.Add("");

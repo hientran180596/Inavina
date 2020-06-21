@@ -7,6 +7,7 @@ using System.Data;
 namespace Inavina.Core
 {
     public class GlobalConstants
+
     {
         #region Default Values
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger("ScanBarcode");
@@ -27,7 +28,7 @@ namespace Inavina.Core
         public static List<Shift> shifts = new List<Shift>();
         public static List<LanguageLibrary> languageLibrarys = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
-        public static bool debugMode = true;
+        public static bool debugMode = false;
         public enum GenderValue { Female, Male }
         public enum StatusValue { NoUse, Using }
         public enum ProductionStatusValue { None, InProgress, Completed, Hold }

@@ -53,8 +53,8 @@ namespace Inavina.View.Home
 
         private bool CheckData()
         {
-            if(!_projectDataContext.CheckConnection(_projectDataContext))
-            {  
+            if (!_projectDataContext.CheckConnection(_projectDataContext))
+            {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Kết nối tới máy chủ thất bại"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }

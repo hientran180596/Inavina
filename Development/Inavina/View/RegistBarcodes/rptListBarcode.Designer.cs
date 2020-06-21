@@ -124,6 +124,7 @@
             // 
             // Detail
             // 
+            this.Detail.BorderWidth = 0F;
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel4,
             this.xrLabel5,
@@ -133,6 +134,7 @@
             this.Detail.HeightF = 55F;
             this.Detail.Name = "Detail";
             this.Detail.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.Detail.StylePriority.UseBorderWidth = false;
             // 
             // xrLabel4
             // 
@@ -215,7 +217,7 @@
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Barcode]")});
             this.txtBarcode.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.txtBarcode.ForeColor = System.Drawing.Color.Black;
-            this.txtBarcode.LocationFloat = new DevExpress.Utils.PointFloat(5F, 4F);
+            this.txtBarcode.LocationFloat = new DevExpress.Utils.PointFloat(5F, 3F);
             this.txtBarcode.Module = 1.5F;
             this.txtBarcode.Name = "txtBarcode";
             this.txtBarcode.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
